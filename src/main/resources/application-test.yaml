@@ -1,0 +1,30 @@
+server:
+  port: 8082
+  tomcat:
+    connection-timeout: 18000000
+  servlet:
+    session:
+      timeout: 30m #建议30分钟，时间太短会不准
+
+spring:
+  application:
+    name: hogwarts-mini  #微服务名称，如果是单个服务就无所谓，spring-cloud集群中是个很重要的标识
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3308/hogwarts-mini?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.example.demo.entity
+  configuration:
+    mapUnderscoreToCamelCase: true
+
+logging:
+  level:
+    com.example.demo.dao: debug #打印sql
+
+
+hogwarts:
+  key: "Hogwarts"
