@@ -10,6 +10,12 @@
                     <defaultValue>hogwarts</defaultValue>
                     <trim>false</trim>
                 </hudson.model.StringParameterDefinition>
+                <hudson.model.StringParameterDefinition>
+                    <name>testCommand</name>
+                    <description>测试命令</description>
+                    <defaultValue>pwd</defaultValue>
+                    <trim>false</trim>
+                </hudson.model.StringParameterDefinition>
             </parameterDefinitions>
         </hudson.model.ParametersDefinitionProperty>
     </properties>
@@ -20,7 +26,12 @@
     <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
     <triggers/>
     <concurrentBuild>false</concurrentBuild>
-    <builders/>
+    <builders>
+        <hudson.tasks.Shell>
+            <command>eval "${testCommand}"</command>
+            <configuredLocalRules/>
+        </hudson.tasks.Shell>
+    </builders>
     <publishers/>
     <buildWrappers/>
 </project>
