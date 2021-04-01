@@ -1,4 +1,5 @@
 <project>
+    <actions/>
     <description/>
     <keepDependencies>false</keepDependencies>
     <properties>
@@ -10,12 +11,19 @@
                     <defaultValue>hogwarts</defaultValue>
                     <trim>false</trim>
                 </hudson.model.StringParameterDefinition>
+                <hudson.model.TextParameterDefinition>
+                    <name>remark</name>
+                    <description/>
+                    <defaultValue>霍格沃兹演示</defaultValue>
+                    <trim>false</trim>
+                </hudson.model.TextParameterDefinition>
                 <hudson.model.StringParameterDefinition>
                     <name>testCommand</name>
                     <description>测试命令</description>
                     <defaultValue>pwd</defaultValue>
                     <trim>false</trim>
                 </hudson.model.StringParameterDefinition>
+
             </parameterDefinitions>
         </hudson.model.ParametersDefinitionProperty>
     </properties>
