@@ -7,7 +7,7 @@ import lombok.Data;
 @ApiModel(value = "JenkinsBuild类", description = "请求类")
 @Data
 public class JenkinsBuildDto {
-    @ApiModelProperty(value = "JenkinsJob名称",example = "test03",required = true)
+    @ApiModelProperty(value = "JenkinsJob名称",example = "test02",required = true)
     private String jobName;
     @ApiModelProperty(value = "用户名",example = "hogwarts",required = false)
     private String userName;

@@ -26,14 +26,15 @@ public class JenkinsUtil {
         String jenkinsVersion = jenkinsHttpClient.getJenkinsVersion();
         System.out.println("jenkinsVersion:" + jenkinsVersion);
         JenkinsServer jenkinsServer = new JenkinsServer(jenkinsHttpClient);
-        //判断如果jobName不为空则更新Job，否则创建Job
-//        if (job.getName().equals(jobName)){
-//            jenkinsServer.updateJob(jobName,jobConfigXml,true);
-//        }else {
-//            jenkinsServer.createJob(jobName,jobConfigXml,true);
-//        }
-        jenkinsServer.updateJob(jobName,jobConfigXml,true);
         Map<String, Job> jobs = jenkinsServer.getJobs();
+        //判断如果jobName不为空则更新Job，否则创建Job
+        if (jobs.get(jobName) != null){
+            jenkinsServer.updateJob(jobName,jobConfigXml,true);
+        }else {
+            jenkinsServer.createJob(jobName,jobConfigXml,true);
+        }
+//        jenkinsServer.updateJob(jobName,jobConfigXml,true);
+        //todo:新建job无法build，需bugfix
         Job job = jobs.get(jobName);
         //jenkins参数化构建传参
         Map<String,String> parameter = new HashMap<>();
