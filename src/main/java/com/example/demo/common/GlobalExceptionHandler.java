@@ -1,5 +1,6 @@
 package com.example.demo.common;
 
+import com.example.demo.dto.ResultDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;

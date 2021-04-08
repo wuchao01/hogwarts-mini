@@ -1,6 +1,6 @@
 package com.example.demo.service.impl;
 
-import com.example.demo.common.ResultDto;
+import com.example.demo.dto.ResultDto;
 import com.example.demo.dao.HogwartsTestUserMapper;
 import com.example.demo.dto.UserDto;
 import com.example.demo.entity.HogwartsTestUser;

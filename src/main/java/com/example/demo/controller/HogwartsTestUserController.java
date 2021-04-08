@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.example.demo.common.ResultDto;
+import com.example.demo.dto.ResultDto;
 import com.example.demo.common.ServiceException;
 import com.example.demo.dto.AddHogwartsTestUserDto;
 import com.example.demo.dto.JenkinsBuildDto;
