@@ -22,7 +22,7 @@ public class HogwartsTestUser extends BaseEntityNew {
     private String userName;
 
     /**
-     * 密码，只有带下划线的才会生成 @Column注解
+     * 密码
      */
     private String password;
 
@@ -60,4 +60,5 @@ public class HogwartsTestUser extends BaseEntityNew {
      */
     @Column(name = "create_time")
     private Date createTime;
+
 }

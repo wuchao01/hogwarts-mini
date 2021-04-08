@@ -16,9 +16,9 @@
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
   </resultMap>
   
-<!--  <select id="selectHogwartsTestUser" parameterType="int" resultType="BaseResultMap">-->
+<!--  &lt;select id="selectHogwartsTestUser" parameterType="int" resultType="BaseResultMap"&gt;-->
 <!--    SELECT * FROM hogwarts_test_user WHERE ID = #{id}-->
-<!--  </select>-->
+<!--  &lt;/select&gt;-->
 
     <select id="getByName" resultType="HogwartsTestUser">
       SELECT * FROM hogwarts_test_user
