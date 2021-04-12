@@ -1,6 +1,7 @@
 package com.example.demo.common;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -8,17 +9,32 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Objects;
 
 //拦截器
 @Component
 @Slf4j
 public class DemoInterceptor implements HandlerInterceptor {
 
+    @Autowired
+    private TokenDb tokenDb;
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
         log.info("=== preHandle ====");
         log.info("=== request.getRequestURI() ====" + request.getRequestURI());
 
+        String tokenStr = request.getHeader(UserBaseStr.LOGIN_TOKEN);
+
+        if (Objects.isNull(tokenStr)){
+            response.setStatus(401);
+            ServiceException.throwEx("客户端未传token");
+        }
+
+        if (Objects.isNull(tokenDb.getUserInfo(tokenStr))){
+            response.setStatus(401);
+            ServiceException.throwEx("客户端未登录");
+            return false;
+        }
         return true;
     }
 

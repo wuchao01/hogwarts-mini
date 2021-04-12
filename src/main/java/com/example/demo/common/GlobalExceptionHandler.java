@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class GlobalExceptionHandler {
 
     //业务异常
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+//    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler({ServiceException.class})
     public ResultDto serviceExceptionHandler(ServiceException se){
         log.error(se.getMessage());
@@ -38,7 +38,7 @@ public class GlobalExceptionHandler {
     public ResultDto resultFormat(Throwable throwable){
         String tips = "系统繁忙，请稍后重试";
         if (throwable instanceof ServiceException){
-            return ResultDto.fail("业务异常," + tips);
+            return ResultDto.fail("业务异常," + throwable.getMessage());
         }
         if (throwable instanceof Exception){
             return ResultDto.fail("非业务异常," + tips);
