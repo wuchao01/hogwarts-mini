@@ -19,10 +19,18 @@ public class DemoInterceptor implements HandlerInterceptor {
     @Autowired
     private TokenDb tokenDb;
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-
+        String requestUri = request.getRequestURI();
         log.info("=== preHandle ====");
-        log.info("=== request.getRequestURI() ====" + request.getRequestURI());
+        log.info("=== request.getRequestURI() ====" + requestUri);
 
+        //拦截器放开登录、注册、swagger的token校验
+        if(requestUri.equalsIgnoreCase("/hogwartsUser/login")
+                || requestUri.equalsIgnoreCase("/hogwartsUser/register")
+                || requestUri.contains("swagger")) {
+            return true;
+        }
+
+        //从请求的header获取客户端附加Token
         String tokenStr = request.getHeader(UserBaseStr.LOGIN_TOKEN);
 
         if (Objects.isNull(tokenStr)){

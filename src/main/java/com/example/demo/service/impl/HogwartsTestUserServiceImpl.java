@@ -1,15 +1,18 @@
 package com.example.demo.service.impl;
 
-import com.example.demo.dto.ResultDto;
+import com.example.demo.common.UserBaseStr;
 import com.example.demo.dao.HogwartsTestUserMapper;
+import com.example.demo.dto.ResultDto;
 import com.example.demo.dto.UserDto;
 import com.example.demo.entity.HogwartsTestUser;
 import com.example.demo.service.HogwartsTestUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.DigestUtils;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class HogwartsTestUserServiceImpl implements HogwartsTestUserService {
@@ -26,6 +29,23 @@ public class HogwartsTestUserServiceImpl implements HogwartsTestUserService {
     //实现注册方法
     @Override
     public ResultDto<HogwartsTestUser> save(HogwartsTestUser hogwartsTestUser) {
+        String userName = hogwartsTestUser.getUserName();
+        String password= hogwartsTestUser.getPassword();
+
+        // TODO: 2021/4/25 这里暂时还没弄明白为啥要重新new一个HogwartsTestUser，我理解应该可以直接用hogwartsTestUser类的setUserName
+        HogwartsTestUser queryHogwartsTestUser = new HogwartsTestUser();
+        queryHogwartsTestUser.setUserName(userName);
+        //通过hogwartsTestUserMapper.select查询数据库列表数据是否存在已注册过的userName
+        List<HogwartsTestUser> resultHogwartsTestUser = hogwartsTestUserMapper.select(queryHogwartsTestUser);
+        //判断如果数据库查询resultHogwartsTestUser数据不为空且大于0条即已注册
+        if (Objects.nonNull(resultHogwartsTestUser) && resultHogwartsTestUser.size() > 0){
+            return ResultDto.fail("用户名已存在");
+        }
+
+        //密码加密
+        String newPwd = DigestUtils.md5DigestAsHex((UserBaseStr.md5Hex_sign + userName + password).getBytes());
+        //使用md5加密后的密码存储数据
+        hogwartsTestUser.setPassword(newPwd);
         hogwartsTestUser.setCreateTime(new Date());
         //如果数据库不为空字段传空值，系统会报错空指针，ResultDto.fail方法会拦截并返回失败提示
         hogwartsTestUser.setUpdateTime(new Date());
