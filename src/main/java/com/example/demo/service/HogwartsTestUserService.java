@@ -7,7 +7,7 @@ import com.example.demo.entity.HogwartsTestUser;
 import java.util.List;
 
 public interface HogwartsTestUserService {
-    String login(UserDto userDto);
+    ResultDto login(UserDto userDto);
 
     /**
      * 保存

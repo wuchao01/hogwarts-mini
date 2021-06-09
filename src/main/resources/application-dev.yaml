@@ -10,9 +10,10 @@ spring:
   application:
     name: hogwarts-mini  #微服务名称，如果是单个服务就无所谓，spring-cloud集群中是个很重要的标识
   datasource:
-    url: jdbc:mysql://127.0.0.1:3308/hogwarts-mini?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://192.168.37.207:4001/hogwarts-mini?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+#    url: jdbc:mysql://127.0.0.1:3308/hogwarts-mini?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
     username: root
-    password: 123456
+    password: YTc0ZjRhZGRmZDJkMzYyYTZj
     driver-class-name: com.mysql.cj.jdbc.Driver
 
 mybatis:

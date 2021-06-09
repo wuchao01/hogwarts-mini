@@ -5,8 +5,8 @@ import lombok.Data;
 @Data
 public class TokenDto {
     private Integer userId;
-    private Integer userName;
-    private Integer token;
+    private String userName;
+    private String token;
     private Integer defaultJenkinsId;
 
 }

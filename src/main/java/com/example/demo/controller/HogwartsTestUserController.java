@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.example.demo.common.Token;
 import com.example.demo.dto.ResultDto;
 import com.example.demo.common.ServiceException;
 import com.example.demo.dto.AddHogwartsTestUserDto;
@@ -37,18 +38,18 @@ public class HogwartsTestUserController {
     @ApiOperation("登录接口")
     //@RequestMapping(value = "login", method = RequestMethod.POST)
     @PostMapping("login")
-    public ResultDto<UserDto> login(@RequestBody UserDto userDto){
+    public ResultDto<Token> login(@RequestBody UserDto userDto){
 
-        String result = hogwartsTestUserService.login(userDto);
+        return hogwartsTestUserService.login(userDto);
 
-        if(userDto.getUserName().contains("error2")){
-            throw new NullPointerException();
-        }
-        if(userDto.getUserName().contains("error")){
-            ServiceException.throwEx("用户名中含有error");
-        }
-
-        return ResultDto.success("成功 " + result + " hogwartsKey1= "+ hogwartsKey,userDto);
+//        if(userDto.getUserName().contains("error2")){
+//            throw new NullPointerException();
+//        }
+//        if(userDto.getUserName().contains("error")){
+//            ServiceException.throwEx("用户名中含有error");
+//        }
+//
+//        return ResultDto.success("成功 " + result + " hogwartsKey1= "+ hogwartsKey,userDto);
     }
 
     @ApiOperation("注册接口")
