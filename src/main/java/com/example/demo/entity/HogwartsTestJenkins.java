@@ -1,5 +1,6 @@
 package com.example.demo.entity;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -77,4 +78,11 @@ public class HogwartsTestJenkins extends BaseEntityNew {
     @Column(name = "update_time")
     private Date updateTime;
 
- }
+    /**
+     * 此字段不存入数据库
+     * 是否设置为默认服务器 1 是 0 否
+     */
+    @Transient
+    @ApiModelProperty(value="是否设置为默认服务器 1 是 0 否",required=true)
+    private Integer defaultJenkinsFlag = 0;
+}

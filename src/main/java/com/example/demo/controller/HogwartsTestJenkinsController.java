@@ -33,6 +33,7 @@ public class HogwartsTestJenkinsController {
     @ApiOperation("添加Jenkins")
     @PostMapping("save")
     public ResultDto<HogwartsTestJenkins> save(HttpServletRequest request,@RequestBody AddHogwartsTestJenkinsDto addHogwartsTestJenkinsDto){
+        //获取请求头中的token
         String tokenStr = request.getHeader(UserBaseStr.LOGIN_TOKEN);
         TokenDto tokenDto = tokenDb.getUserInfo(tokenStr);
         String commandRunCaseSuffix = addHogwartsTestJenkinsDto.getCommandRunCaseSuffix();
