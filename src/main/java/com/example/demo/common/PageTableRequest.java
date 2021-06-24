@@ -3,6 +3,7 @@ package com.example.demo.common;
 import com.example.demo.dto.BaseDto;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
 
 import java.io.Serializable;
 
@@ -10,6 +11,7 @@ import java.io.Serializable;
  * 分页查询参数
  */
 @ApiModel(value = "列表查询的分页参数",description = "请求参数类")
+@Data
 public class PageTableRequest<Dto extends BaseDto> implements Serializable {
     private static final long serialVersionUID = 7328071045193618467L;
     @ApiModelProperty(value = "页码", required = true, example = "1")

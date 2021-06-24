@@ -1,5 +1,6 @@
 package com.example.demo.service.impl;
 
+import com.example.demo.common.PageTableRequest;
 import com.example.demo.common.Token;
 import com.example.demo.common.TokenDb;
 import com.example.demo.common.UserBaseStr;
@@ -8,6 +9,7 @@ import com.example.demo.dao.HogwartsTestUserMapper;
 import com.example.demo.dto.ResultDto;
 import com.example.demo.dto.TokenDto;
 import com.example.demo.dto.UserDto;
+import com.example.demo.dto.jenkins.QueryHogwartsTestJenkinsListDto;
 import com.example.demo.entity.HogwartsTestJenkins;
 import com.example.demo.entity.HogwartsTestUser;
 import com.example.demo.service.HogwartsTestJenkinsService;
@@ -56,6 +58,11 @@ public class HogwartsTestJenkinsServiceImpl implements HogwartsTestJenkinsServic
             tokenDb.addUserInfo(tokenDto.getToken(),tokenDto);
         }
         return ResultDto.success("成功",hogwartsTestJenkins);
+    }
+
+    @Override
+    public ResultDto<HogwartsTestJenkins> list(PageTableRequest<QueryHogwartsTestJenkinsListDto> pageTableRequest) {
+        return null;
     }
 
 }
